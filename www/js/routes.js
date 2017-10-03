@@ -11,6 +11,11 @@ angular
           templateUrl: 'templates/home.html',
           controller: 'HomeController'
         })
+        .state('sobre', {
+          url: '/sobre',
+          templateUrl: 'templates/sobre.html',
+          controller: 'SobreController'
+        })
         .state('tabs', {
           url: '/tabs',
           abstract: true,
