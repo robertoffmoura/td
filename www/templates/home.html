@@ -9,10 +9,18 @@
   </ion-header-bar>
 -->
   <ion-content scroll="false">
-    <h1>Home</h1>
-    <a href="#/tabs/mapa">Mapa</a>
-    <a href="#/tabs/ocorrencias">Ocorrência</a>
-    <a href="#/sobre">Sobre nós</a>
+    <h1 style="text-align: center;">Urca Safety</h1>
+    <div style="display: block; text-align: center; margin-bottom: 10px">
+        <button style="width: 200px;"  onclick="location.href='#/tabs/ocorrencias';" class="button icon-left ion-document-text button-positive">
+            Registrar ocorrência
+        </button>
+    </div>
+    <div style="display: block; text-align: center; margin-bottom: 10px">
+        <button style="width: 200px;" nclick="location.href='#/tabs/mapa';" class="button icon-left ion-map button-positive">
+            Visualizar Mapa
+        </button>
+    </div>
+    <a style="position:fixed; bottom:0;" href="#/sobre">Sobre nós</a>
   </ion-content>
 
 </ion-view>
