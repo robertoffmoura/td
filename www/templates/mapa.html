@@ -1,11 +1,5 @@
 <ion-view class="mapaView" view-title="Mapa">
 
-  <ion-header-bar class="bar-dark">
-    <h1 class="title">
-      <img src="img/coffee-bean-icon.png">
-      <span>CaffeineHit</span>
-    </h1>
-  </ion-header-bar>
   <ion-content scroll="false">
     <map center="{{yelp.lat}}, {{yelp.lon}}" zoom="14" disable-default-u-i="true">
       <marker position="{{[yelp.lat, yelp.lon]}}" icon="img/me-marker.png">
@@ -25,7 +19,7 @@
               <div class="col">
                 <p class="address">
                   <i class="ion ion-ios-location"></i>
-                  {{yelp.cafe.location.display_address | join:", "}}
+                  {{yelp.cafe.location.display_address }}
                 </p>
               </div>
               <div class="col">

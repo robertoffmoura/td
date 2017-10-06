@@ -7,3 +7,8 @@
 .contents{
   margin: 5px 0;
 }
+
+centralize {
+  margin: 0 auto;
+  display: inherit;
+}

@@ -6,8 +6,8 @@ app.service("YelpService", function ($q, $http, $cordovaGeolocation, $ionicPopup
 		'isLoading': false,
 		'hasMore': true,
 		'results': [],
-		'lat': 51.544440,
-		'lon': -0.022974,
+		'lat': -22.954616,
+		'lon': -43.166817,
 		'refresh': function () {
 			self.page = 1;
 			self.isLoading = false;

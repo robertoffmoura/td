@@ -1,26 +1,30 @@
-<ion-view class="homeView" view-title="Home">
+<ion-view class="homeView" view-title="Home" hide-nav-bar="true">
+  <ion-content scroll="false" class="padding">
 
-<!--
-  <ion-header-bar class="bar-dark">
-    <h1 class="title">
-      <img src="img/coffee-bean-icon.png">
-      <span>CaffeineHit</span>
-    </h1>
-  </ion-header-bar>
--->
-  <ion-content scroll="false">
-    <h1 style="text-align: center;">Urca Safety</h1>
-    <div style="display: block; text-align: center; margin-bottom: 10px">
-        <button style="width: 200px;"  onclick="location.href='#/tabs/ocorrencias';" class="button icon-left ion-document-text button-positive">
-            Registrar ocorrência
-        </button>
-    </div>
-    <div style="display: block; text-align: center; margin-bottom: 10px">
-        <button style="width: 200px;" onclick="location.href='#/tabs/mapa';" class="button icon-left ion-map button-positive">
+    <div class="row" style="height: 90%">
+      <div class="col col-center">
+        <h1 style="text-align: center;">Urca Safety</h1>
+        <div style="display: block; text-align: center; margin-bottom: 10px">
+          <button style="width: 200px;" ui-sref="tabs.mapa" class="button icon-left ion-map button-positive">
             Visualizar Mapa
-        </button>
-    </div>
-    <a style="position:fixed; bottom:0;" href="#/sobre">Sobre nós</a>
-  </ion-content>
+          </button>
+        </div>
+        <div style="display: block; text-align: center; margin-bottom: 10px">
+          <button style="width: 200px;"  ui-sref="tabs.ocorrencias" class="button icon-left ion-document-text button-positive">
+            Registrar Ocorrência
+          </button>
+        </div>
 
+      </div>
+    </div>
+
+    <div class="row" style="height: 10%">
+      <div class="col col-center padding">
+        <button class="button button-clear button-positive" ui-sref="sobre" style="float: right;">
+          Sobre Nós
+        </button>
+      </div>
+    </div>
+
+  </ion-content>
 </ion-view>

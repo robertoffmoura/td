@@ -1,16 +1,29 @@
-<ion-view class="sobreView" view-title="Sobre">
+<ion-view class="sobreView" view-title="Sobre" can-swipe-back="true" hide-back-button="false">
+  <ion-nav-bar class="bar-positive">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content scroll="true" class="padding">
 
-  <ion-header-bar class="bar-dark">
-  </ion-header-bar>
-  <ion-content scroll="true">
     <h1>Urca Safety</h1>
-    <p>Urca Safety é uma ideia de alunos que surgiu de uma disciplina do curso básico do Instituto Militar de Engenharia.</p>
-    <p>O objetivo deste app é melhorar a segurança urbana no Rio de Janeiro, trazendo uma plataforma de fácil uso e acesso para a população registrar ocorrências (roubos, furtos, assaltos, etc.) e visualiá-las no mapa do bairro, mostrando onde ocorreu cada uma delas.</p>
-    <p>Este app foi desenvolvido por:</p>
-    <p style="padding-left:15px">Gabriel Dilly Vieira Furtuoso</p>
-    <p style="padding-left:15px">Hans Wagner Gluck</p>
-    <p style="padding-left:15px">Matheus Rodrigues Affonso</p>
-    <p style="padding-left:15px">Roberto Ferreira Franco Moura</p>
+    <div class="padding-horizontal">
+      <p>Urca Safety é uma ideia de alunos que surgiu de uma disciplina do curso básico do Instituto Militar de Engenharia.</p>
+      <p>O objetivo deste app é melhorar a segurança urbana no Rio de Janeiro, trazendo uma plataforma de fácil uso e acesso para a população registrar ocorrências (roubos, furtos, assaltos, etc.) e visualiá-las no mapa do bairro, mostrando onde ocorreu cada uma delas.</p>
+    </div>
+
+    <div class="card">
+      <div class="item item-text-wrap">
+        Este app foi desenvolvido por:
+        <ul style="list-style-type: disc; padding-left: 30px">
+          <li>Gabriel Dilly Vieira Furtuoso</li>
+          <li>Hans Wagner Gluck</li>
+          <li>Matheus Rodrigues Affonso</li>
+          <li>Roberto Ferreira Franco Moura</li>
+        </ul>
+      </div>
+    </div>
+
+
   </ion-content>
 
 </ion-view>

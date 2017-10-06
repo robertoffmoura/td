@@ -5,10 +5,26 @@
     .module('App')
     .controller('MapaController', MapaController);
 
-  MapaController.$inject = ['$scope', 'YelpService'];
-  function MapaController($scope, YelpService) {
+  MapaController.$inject = ['$scope', 'YelpService', '$ionicPlatform', '$state', '$ionicHistory'];
+  function MapaController($scope, YelpService, $ionicPlatform, $state, $ionicHistory) {
 
     console.log('MapaController::');
+
+    // Altera o comportamento do backButton
+    $ionicPlatform.registerBackButtonAction(function () {
+      var currentState = $state.current.name;
+      console.log('BackButton pressed on state:', currentState);
+
+      if (currentState === 'tabs.mapa') {
+        $ionicHistory.nextViewOptions({
+          disableBack: true,
+          disableAnimate: true,
+          historyRoot: true
+        });
+        $state.go('home');
+      }
+    }, 100);
+
 
     $scope.$on('mapInitialized', function (event, map) {
       $scope.map = map;
