@@ -3,6 +3,8 @@ angular
   .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider',
     function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
+      $ionicConfigProvider.navBar.alignTitle('center');
+
       $ionicConfigProvider.scrolling.jsScrolling(ionic.Platform.isIOS());
 
       $stateProvider
@@ -19,7 +21,8 @@ angular
         .state('tabs', {
           url: '/tabs',
           abstract: true,
-          templateUrl: 'templates/tabs.html'
+          templateUrl: 'templates/tabs.html',
+          controller: 'TabsController'
         })
         .state('tabs.mapa', {
           url: '/mapa',
@@ -36,6 +39,15 @@ angular
             'tab-ocorrencias': {
               templateUrl: 'templates/ocorrencias.html',
               controller: 'OcorrenciasController'
+            }
+          }
+        })
+        .state('tabs.nova_ocorrencia', {
+          url: '/nova_ocorrencia',
+          views: {
+            'tab-ocorrencias': {
+              templateUrl: 'templates/nova_ocorrencia.html',
+              controller: 'NovaOcorrenciaController'
             }
           }
         });

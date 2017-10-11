@@ -1,10 +1,16 @@
 <ion-view class="mapaView" view-title="Mapa">
-
+  <ion-nav-buttons>
+    <button class="button button-clear" ng-click="backToHome()">
+      <i class="ion-arrow-left-c"></i> Voltar
+    </button>
+  </ion-nav-buttons>
   <ion-content scroll="false">
-    <map center="{{yelp.lat}}, {{yelp.lon}}" zoom="14" disable-default-u-i="true">
+    <map center="{{yelp.lat}}, {{yelp.lon}}" zoom="15" disable-default-u-i="true">
       <marker position="{{[yelp.lat, yelp.lon]}}" icon="img/me-marker.png">
       </marker>
-      <marker ng-repeat="cafe in yelp.results" icon="img/coffee-marker.png" clickable="true" on-mousedown="showCafeDetail(event, cafe)" position="{{[cafe.location.coordinate.latitude, cafe.location.coordinate.longitude]}}">
+      <marker ng-repeat="cafe in yelp.results" icon="img/coffee-marker.png" clickable="true"
+              on-mousedown="showCafeDetail(event, cafe)"
+              position="{{[cafe.location.coordinate.latitude, cafe.location.coordinate.longitude]}}">
       </marker>
 
       <info-window id="marker-info">
@@ -43,6 +49,8 @@
         </div>
       </info-window>
     </map>
+
+    <button class="button icon ion-plus-round button-positive nova-ocorrencia" ui-sref="tabs.nova_ocorrencia"></button>
 
 
   </ion-content>

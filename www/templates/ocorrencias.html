@@ -1,7 +1,13 @@
 <ion-view class="ocorrenciasView" view-title="Ocorrências">
 
-  <ion-nav-buttons side="primary">
-    <button class="button" ng-click="doSomething()">
+  <ion-nav-buttons side="left">
+    <button class="button button-clear" ng-click="backToHome()">
+      <i class="ion-arrow-left-c"></i> Voltar
+    </button>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ui-sref="tabs.nova_ocorrencia">
       <i class="icon ion-plus-round"></i>
     </button>
   </ion-nav-buttons>

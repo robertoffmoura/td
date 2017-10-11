@@ -28,3 +28,7 @@ $font-family-base: 'Raleway', serif;
 @import "www/scss/map";
 @import "www/css/style";
 
+// IMPORTANTE: incluir cada arquivo .scss das views aqui abaixo:
+@import "www/scss/home";
+@import "www/scss/mapa";
+
