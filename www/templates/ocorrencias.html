@@ -14,7 +14,15 @@
 
   <ion-content scroll="false">
     <h1>Ocorrências</h1>
-
+    <ion-list>
+        <ion-item class="item item-cion-left" ng-repeat="occurrence in listOccurrences">
+            <h2>{{occurrence.title}}</h2>
+            {{occurrence.description}}
+            <span class="item-note">
+                {{displayTime(occurrence)}}
+            </span>
+        </ion-item>
+    </ion-list>
   </ion-content>
 
 </ion-view>
