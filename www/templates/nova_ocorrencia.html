@@ -1,4 +1,4 @@
-<ion-view class="nova_ocorrenciaView" view-title="Registrar Nova Ocorrência" hide-back-button="true">
+<ion-view class="nova_ocorrenciaView" view-title="Nova Ocorrência" hide-back-button="true">
   <ion-nav-buttons side="left">
     <button class="button button-clear" ng-click="goBack()">
       <i class="ion-arrow-left-c"></i> Voltar
@@ -7,6 +7,18 @@
 
   <ion-content scroll="false">
     <h1>Nova Ocorrência</h1>
+
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Buscar local" google-autocomplete-suggestion
+               location="data.location" country-code="{{countryCode}}"
+               on-selection="onAddressSelection(location)"
+               ng-model="data.location.formatted_address"
+               readonly required>
+      </label>
+    </div>
+
 
   </ion-content>
 

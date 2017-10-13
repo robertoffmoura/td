@@ -18,7 +18,21 @@
         historyRoot: true
       });
       $state.go('tabs.ocorrencias');
-    }
+    };
+
+
+
+    $scope.data = {};
+
+    $scope.countryCode = 'BR';
+
+    $scope.onAddressSelection = function (location) {
+      console.log(location);
+      console.log($scope.data);
+
+      var a = location.address_components;
+    };
+
 
 
   }

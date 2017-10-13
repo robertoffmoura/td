@@ -1,7 +1,8 @@
 var app = angular.module('App', [
 	'ionic',
   'ngMap',
-  'ngCordova'
+  'ngCordova',
+  'ion-google-autocomplete'
 ]);
 
 app.run(function ($ionicPlatform) {
