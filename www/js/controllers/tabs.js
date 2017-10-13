@@ -15,7 +15,7 @@
       var currentState = $state.current.name;
       console.log('BackButton pressed on state:', currentState);
 
-      if (currentState === 'tabs.mapa') {
+      if (currentState === 'tabs.map') {
         $ionicViewSwitcher.nextDirection('back');
         $ionicHistory.nextViewOptions({
           disableBack: true,

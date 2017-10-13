@@ -13,10 +13,10 @@ angular
           templateUrl: 'templates/home.html',
           controller: 'HomeController'
         })
-        .state('sobre', {
-          url: '/sobre',
-          templateUrl: 'templates/sobre.html',
-          controller: 'SobreController'
+        .state('about', {
+          url: '/about',
+          templateUrl: 'templates/about.html',
+          controller: 'AboutController'
         })
         .state('tabs', {
           url: '/tabs',
@@ -24,30 +24,30 @@ angular
           templateUrl: 'templates/tabs.html',
           controller: 'TabsController'
         })
-        .state('tabs.mapa', {
-          url: '/mapa',
+        .state('tabs.map', {
+          url: '/map',
           views: {
-            'tab-mapa': {
-              templateUrl: 'templates/mapa.html',
-              controller: 'MapaController'
+            'tab-map': {
+              templateUrl: 'templates/map.html',
+              controller: 'MapController'
             }
           }
         })
-        .state('tabs.ocorrencias', {
-          url: '/ocorrencias',
+        .state('tabs.occurrences', {
+          url: '/occurrences',
           views: {
-            'tab-ocorrencias': {
-              templateUrl: 'templates/ocorrencias.html',
-              controller: 'OcorrenciasController'
+            'tab-occurrences': {
+              templateUrl: 'templates/occurrences.html',
+              controller: 'OccurrencesController'
             }
           }
         })
-        .state('tabs.nova_ocorrencia', {
-          url: '/nova_ocorrencia',
+        .state('tabs.new_occurrence', {
+          url: '/new_occurrence',
           views: {
-            'tab-ocorrencias': {
-              templateUrl: 'templates/nova_ocorrencia.html',
-              controller: 'NovaOcorrenciaController'
+            'tab-occurrences': {
+              templateUrl: 'templates/new_occurrence.html',
+              controller: 'NewOccurrenceController'
             }
           }
         });

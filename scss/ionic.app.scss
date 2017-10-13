@@ -25,10 +25,10 @@ $font-family-base: 'Raleway', serif;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 @import "www/scss/infowindow";
-@import "www/scss/map";
+@import "www/scss/mapconfig";
 @import "www/css/style";
 
 // IMPORTANTE: incluir cada arquivo .scss das views aqui abaixo:
 @import "www/scss/home";
-@import "www/scss/mapa";
+@import "www/scss/map";
 

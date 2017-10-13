@@ -3,12 +3,12 @@
 
   angular
     .module('App')
-    .controller('MapaController', MapaController);
+    .controller('MapController', MapController);
 
-  MapaController.$inject = ['$scope', 'YelpService', '$ionicPlatform', '$state', '$ionicHistory'];
-  function MapaController($scope, YelpService, $ionicPlatform, $state, $ionicHistory) {
+  MapController.$inject = ['$scope', 'YelpService', '$ionicPlatform', '$state', '$ionicHistory'];
+  function MapController($scope, YelpService, $ionicPlatform, $state, $ionicHistory) {
 
-    console.log('MapaController::');
+    console.log('MapController::');
 
     $scope.$on('mapInitialized', function (event, map) {
       $scope.map = map;

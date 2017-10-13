@@ -1,0 +1,31 @@
+<ion-view class="occurrencesView" view-title="Ocorrências">
+
+  <ion-nav-buttons side="left">
+    <button class="button button-clear" ng-click="backToHome()">
+      <i class="ion-arrow-left-c"></i> Voltar
+    </button>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ui-sref="tabs.new_occurrence">
+      <i class="icon ion-plus-round"></i>
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <ion-refresher
+      pulling-text="Atualizar..."
+      on-refresh="occurrences.loadOccurrences()">
+    </ion-refresher>
+    <ion-list>
+      <ion-item class="item item-c ion-left" ng-repeat="occurrence in occurrences.list">
+        <h2>{{occurrence.title}}</h2>
+        {{occurrence.description}}
+        <span class="item-note">
+                {{occurrence.timestamp| date:'dd/MM/yyyy'}}
+            </span>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-view>

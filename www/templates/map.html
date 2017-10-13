@@ -1,7 +1,12 @@
-<ion-view class="mapaView" view-title="Mapa">
-  <ion-nav-buttons>
+<ion-view class="mapView" view-title="Mapa">
+  <ion-nav-buttons side="left">
     <button class="button button-clear" ng-click="backToHome()">
       <i class="ion-arrow-left-c"></i> Voltar
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="">
+      <i class="icon ion-android-person"></i>
     </button>
   </ion-nav-buttons>
   <ion-content scroll="false">
@@ -50,7 +55,7 @@
       </info-window>
     </map>
 
-    <button class="button icon ion-plus-round button-positive nova-ocorrencia" ui-sref="tabs.nova_ocorrencia"></button>
+    <button class="button icon ion-plus-round button-positive new-occurrence" ui-sref="tabs.new_occurrence"></button>
 
 
   </ion-content>
