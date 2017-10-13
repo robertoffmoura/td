@@ -96,6 +96,12 @@ angular.module('ion-google-autocomplete').factory('googleAutocompleteService', f
   var autocompleteService = new google.maps.places.AutocompleteService();
   var detailsService = new google.maps.places.PlacesService(document.createElement("input"));
 
+  //  Especifica a área para pesquisa de locais para a região da Urca. Os resultados são direcionados, mas não restritos, a locais contidos nesses limites.
+  var defaultBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(-22.962657, -43.185721),
+    new google.maps.LatLng(-22.931238, -43.142599));
+
+
   return {
     /**
      * Search an address from an input and and option country restriction
@@ -108,12 +114,14 @@ angular.module('ion-google-autocomplete').factory('googleAutocompleteService', f
 
       autocompleteService.getPlacePredictions({
         input: input,
+        bounds: defaultBounds,
         componentRestrictions: countryCode ? { country: countryCode } : undefined
       }, function(result, status) {
 
         if (status == google.maps.places.PlacesServiceStatus.OK) {
 
           console.log(status);
+          console.log(defaultBounds);
           dfd.resolve(result);
         }
         else
