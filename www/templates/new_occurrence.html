@@ -6,16 +6,68 @@
   </ion-nav-buttons>
 
   <ion-content scroll="false">
-    <div class="list list-inset">
-      <label class="item item-input">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Buscar local" google-autocomplete-suggestion
-               location="data.location" country-code="BR"
-               on-selection="onAddressSelection(location)"
-               ng-model="data.location.name"
-               readonly required>
-      </label>
+
+
+    <form ng-submit="createNewOccurrence(formData)"
+          novalidate="novalidate"
+          name="faleConscoForm"
+          class="form animated fadeInDown">
+
+    <h3 class="text-center padding">Preencha os dados abaixo</h3>
+
+    <div class="item item-divider">
+      Tipo
     </div>
+    <div class="row">
+      <div class="col-33">
+        <ion-radio ng-model="formData.type" ng-value="'Assalto'">Assalto</ion-radio>          
+      </div>
+
+      <div class="col-33">
+        <ion-radio ng-model="formData.type" ng-value="'Furto'">Furto</ion-radio>  
+      </div>
+
+      <div class="col-33">
+        <ion-radio ng-model="formData.type" ng-value="'Tiroteio'">Tiroteio</ion-radio>
+      </div>
+    </div>
+
+
+    <div class="item item-divider">
+        Local
+      </div>
+    <label class="item item-input">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Buscar local" google-autocomplete-suggestion
+              location="formData.location" country-code="BR"
+              on-selection="onAddressSelection(location)"
+              ng-model="formData.location.name"
+              readonly required>
+    </label>
+
+    <div class="item item-divider">
+      Data e Horário
+    </div>
+    <div class="item item-icon-left" ion-datetime-picker ng-model="formData.datetimeValue">
+        <i class="icon ion-calendar positive"></i>
+        Escolha uma data e hora:
+        <strong>{{formData.datetimeValue| date: "dd/MM/yyyy - H:mm"}}</strong>
+    </div>
+    
+    <div class="item item-divider">
+      Observações e descrições adicionais
+    </div>
+    <label class="item item-input">
+      <textarea placeholder="Digite aqui sua mensagem" rows="6" cols="10"
+                ng-model="formData.description"></textarea>
+    </label>
+
+
+    <button class="button button-calm button-block"
+            type="submit">
+      Enviar
+    </button >
+    </form >
 
 
   </ion-content>

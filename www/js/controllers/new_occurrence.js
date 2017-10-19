@@ -5,11 +5,59 @@
     .module('App')
     .controller('NewOccurrenceController', NewOccurrenceController);
 
-  NewOccurrenceController.$inject = ['$scope', '$ionicPlatform', '$state', '$ionicHistory', '$ionicViewSwitcher'];
+  NewOccurrenceController.$inject = ['$scope', '$ionicPlatform', '$state', '$ionicHistory', '$ionicViewSwitcher', 'Utils', 'Occurrences'];
 
-  function NewOccurrenceController($scope, $ionicPlatform, $state, $ionicHistory, $ionicViewSwitcher) {
+  function NewOccurrenceController($scope, $ionicPlatform, $state, $ionicHistory, $ionicViewSwitcher, Utils, Occurrences) {
 
     console.log('NewOccurrenceController::');
+
+
+    $scope.occurrencesTypes = [
+      {
+        nome: 'Assalto'
+      },
+      {
+        nome: 'Furto'
+      },
+      {
+        nome: 'Tiroteio'
+      }
+    ];
+
+
+    $scope.formData = {
+      type: null,
+      location: [],
+      datetimeValue: null,
+      description: null
+    };
+    $scope.createNewOccurrence = function(form) {
+      form.lat = form.location.geometry.location.lat()
+      form.lng = form.location.geometry.location.lng()
+      console.log(form.lat, form.lng);
+      if(!form.type) Utils.showAlert('Tipo','Por favor, escolha o tipo da ocorrência');
+      else if(!form.location) Utils.showAlert('Local','Por favor, escolha o local da ocorrência');
+      else if(!form.datetimeValue) Utils.showAlert('Data e Horário', 'Por favor, escolha a data e o horário da ocorrência');
+      else {
+        if(!form.description) {
+          Utils.showConfirm('Sem Descrição', 'Desja enviar esta ocorrência sem observações ou descrições?')
+            .then(function(res){
+              if(res) {
+                console.log('Enviando');
+                // Enviar ocorrência para o banco;
+                Occurrences.pushOccurrence(form);
+              } else {
+                console.log('Cancelado');
+              }
+            });
+        } else {
+          Occurrences.pushOccurrence(form);
+
+        }
+      }
+    };
+
+
 
     $scope.goBack = function () {
       $ionicViewSwitcher.nextDirection('back');

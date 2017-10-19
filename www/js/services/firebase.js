@@ -12,8 +12,6 @@
 
       ref: rootRef,
       refOccurrences: rootRef.child('occurrences')
-
-
     };
   }
 })();

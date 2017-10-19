@@ -35,9 +35,12 @@ app.service("YelpService", function ($q, $http, $cordovaGeolocation, $ionicPopup
 							lat: self.lat,
 							lon: self.lon
 						};
+
+						//Pegar ocorrências perto de onde se está
+
 						$http.get('https://api.codecraft.tv/samples/v1/coffee/', {params: params})
 							.success(function (data) {
-								console.log(data);
+								console.log("YelpService::load():",data);
 
 								if (data.businesses.length == 0) {
 									self.hasMore = false;
