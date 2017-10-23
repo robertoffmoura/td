@@ -9,13 +9,13 @@
   function MapController($scope, YelpService, $ionicPlatform, $state, $ionicHistory) {
 
     console.log('MapController::');
-
+    
     $scope.$on('mapInitialized', function (event, map) {
       $scope.map = map;
     });
-
+    
     $scope.yelp = YelpService;
-
+    
     $scope.doRefresh = function () {
       if (!$scope.yelp.isLoading) {
         $scope.yelp.refresh().then(function () {
@@ -24,6 +24,8 @@
       }
     };
 
+    
+    
     $scope.loadMore = function () {
       console.log("loadMore");
       if (!$scope.yelp.isLoading && $scope.yelp.hasMore) {

@@ -5,9 +5,9 @@
     .module('App')
     .factory('Occurrences', Occurrences);
 
-  Occurrences.$inject = ['$q', 'FirebaseData'];
+  Occurrences.$inject = ['$q', 'FirebaseData', 'Utils', '$state'];
 
-  function Occurrences($q, FirebaseData) {
+  function Occurrences($q, FirebaseData, Utils, $state) {
 
     var self = {
       list: []
@@ -26,17 +26,24 @@
       return d.promise;
     };
 
-    self.pushOccurrence = function (title, description, lat, lng) {
+    self.pushOccurrence = function (ocr) {
+      Utils.showLoading();
       var timestamp = firebase.database.ServerValue.TIMESTAMP;
-      var newOccurrenceRef = occurrencesDb.push();
-      newOccurrenceRef.set({
-        'title': title,
-        'description': description,
+      var newOccurrenceRef = FirebaseData.refOccurrences.push().key;
+      FirebaseData.refOccurrences.child(newOccurrenceRef).update({
+        'title': ocr.type,
+        'description': ocr.description,
         'location': {
-          'lat': lat,
-          'lng': lng
+          'lat': ocr.lat,
+          'lng': ocr.lng
         },
+        'datetimeOcr': Date.parse(ocr.datetimeValue)/1000,
         'timestamp': timestamp
+      }).then(function(){
+        Utils.hideLoading();
+        Utils.showAlert('Muito Obrigado', 'Ocorrência registrada com sucesso.');
+        // Da sobreposição no back button quando registra ocorrência clicando pelo + do mapa
+        $state.go('tabs.occurrences');
       });
     };
 

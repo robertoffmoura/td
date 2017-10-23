@@ -2,7 +2,8 @@ var app = angular.module('App', [
 	'ionic',
   'ngMap',
   'ngCordova',
-  'ion-google-autocomplete'
+  'ion-google-autocomplete',
+  "ion-datetime-picker"
 ]);
 
 app.run(function ($ionicPlatform) {
@@ -20,6 +21,15 @@ app.run(function ($ionicPlatform) {
 		}
 	});
 });
+app.run(function($ionicPickerI18n) {
+    $ionicPickerI18n.weekdays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+    $ionicPickerI18n.months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    $ionicPickerI18n.ok = "Ok";
+    $ionicPickerI18n.cancel = "Cancelar";
+    $ionicPickerI18n.okClass = "button-positive";
+    $ionicPickerI18n.cancelClass = "button-stable";
+    $ionicPickerI18n.arrowButtonClass = "button-positive";
+  });
 
 app.config(function ($httpProvider) {
 	$httpProvider.defaults.headers.common['Authorization'] = 'Token 67a8a588c741ca719846e0fa38e8f7103d5da4dc';
