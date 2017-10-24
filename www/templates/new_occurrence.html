@@ -7,7 +7,6 @@
 
   <ion-content scroll="false">
 
-
     <form ng-submit="createNewOccurrence(formData)"
           novalidate="novalidate"
           name="faleConscoForm"
@@ -20,11 +19,11 @@
     </div>
     <div class="row">
       <div class="col-33">
-        <ion-radio ng-model="formData.type" ng-value="'Assalto'">Assalto</ion-radio>          
+        <ion-radio ng-model="formData.type" ng-value="'Assalto'">Assalto</ion-radio>
       </div>
 
       <div class="col-33">
-        <ion-radio ng-model="formData.type" ng-value="'Furto'">Furto</ion-radio>  
+        <ion-radio ng-model="formData.type" ng-value="'Furto'">Furto</ion-radio>
       </div>
 
       <div class="col-33">
@@ -48,12 +47,13 @@
     <div class="item item-divider">
       Data e Horário
     </div>
-    <div class="item item-icon-left" ion-datetime-picker ng-model="formData.datetimeValue">
+
+    <ion-datetime-picker class="item item-icon-left" ng-model="formData.datetimeValue">
         <i class="icon ion-calendar positive"></i>
         Escolha uma data e hora:
         <strong>{{formData.datetimeValue| date: "dd/MM/yyyy - H:mm"}}</strong>
-    </div>
-    
+    </ion-datetime-picker>
+
     <div class="item item-divider">
       Observações e descrições adicionais
     </div>
