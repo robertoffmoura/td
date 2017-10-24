@@ -31,9 +31,10 @@
       datetimeValue: null,
       description: null
     };
+
     $scope.createNewOccurrence = function(form) {
-      form.lat = form.location.geometry.location.lat()
-      form.lng = form.location.geometry.location.lng()
+      form.lat = form.location.geometry.location.lat();
+      form.lng = form.location.geometry.location.lng();
       console.log(form.lat, form.lng);
       if(!form.type) Utils.showAlert('Tipo','Por favor, escolha o tipo da ocorrência');
       else if(!form.location) Utils.showAlert('Local','Por favor, escolha o local da ocorrência');
@@ -43,7 +44,7 @@
           Utils.showConfirm('Sem Descrição', 'Desja enviar esta ocorrência sem observações ou descrições?')
             .then(function(res){
               if(res) {
-                console.log('Enviando');
+                console.log('Enviando', form);
                 // Enviar ocorrência para o banco;
                 Occurrences.pushOccurrence(form);
               } else {
@@ -52,7 +53,7 @@
             });
         } else {
           Occurrences.pushOccurrence(form);
-
+          $state.go('tabs.occurrences');
         }
       }
     };
