@@ -3,7 +3,8 @@ var app = angular.module('App', [
   'ngMap',
   'ngCordova',
   'ion-google-autocomplete',
-  'ion-datetime-picker'
+	'ion-datetime-picker',
+	'firebase'
 ]);
 
 app.run(function ($ionicPlatform) {

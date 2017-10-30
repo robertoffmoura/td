@@ -47,5 +47,9 @@
     };
 
 
+    $scope.goOccurrences = function () {
+      $state.go("tabs.occurrences");
+    }
+
   }
 })();
