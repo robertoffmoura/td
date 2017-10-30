@@ -62,8 +62,8 @@ app.service("YelpService", function ($q, $http, $cordovaGeolocation, $ionicPopup
 						console.error("Error getting position");
 						console.error(err);
 						$ionicPopup.alert({
-							'title': 'Please switch on geolocation',
-							'template': "It seems like you've switched off geolocation for caffeinehit, please switch it on by going to you application settings."
+							'title': 'Por favor habilite seu GPS',
+							'template': "Parece que o serviço de localização do seu aparelho está indisponível. Habilite essa opção nas configurações do aparelho."
 						});
 					})
 			});
