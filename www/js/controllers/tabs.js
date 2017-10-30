@@ -36,6 +36,17 @@
       $state.go('home');
     };
 
+    $scope.backToMap = function () {
+      $ionicViewSwitcher.nextDirection('back');
+      $ionicHistory.nextViewOptions({
+        disableBack: true,
+        disableAnimate: true,
+        historyRoot: true
+      });
+      $state.go('tabs.map');
+    };
+
+
     $scope.goOccurrences = function () {
       $state.go("tabs.occurrences");
     }

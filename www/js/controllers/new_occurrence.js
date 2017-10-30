@@ -27,7 +27,7 @@
 
     $scope.formData = {
       type: null,
-      location: [],
+      location: {},
       datetimeValue: null,
       description: null
     };
@@ -41,7 +41,7 @@
       else if(!form.datetimeValue) Utils.showAlert('Data e Horário', 'Por favor, escolha a data e o horário da ocorrência');
       else {
         if(!form.description) {
-          Utils.showConfirm('Sem Descrição', 'Desja enviar esta ocorrência sem observações ou descrições?')
+          Utils.showConfirm('Sem Descrição', 'Deseja enviar esta ocorrência sem observações ou descrições?')
             .then(function(res){
               if(res) {
                 console.log('Enviando', form);
@@ -80,7 +80,6 @@
       console.log('vicinity:', location.vicinity);
       if (location.photos !== undefined)
         console.log('photo Url:', location.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
-
 
     };
 

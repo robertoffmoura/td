@@ -1,15 +1,15 @@
 (function () {
     'use strict';
-  
+
     angular
       .module('App')
       .factory('Utils', Utils);
-  
+
     Utils.$inject = ['$ionicLoading', '$ionicPopup', '$q'];
     function Utils($ionicLoading, $ionicPopup, $q) {
-  
+
       var functionObj = {};
-  
+
       functionObj.showLoading = function(){
         $ionicLoading.show({
           content: '<i class="ion-loading-c"></i> ', // The text to display in the loading indicator
@@ -19,11 +19,11 @@
           showDelay: 50 // The delay in showing the indicator
         });
       };
-  
+
       functionObj.hideLoading = function(){
         $ionicLoading.hide();
       };
-  
+
       functionObj.showAlert = function(title, message) {
         $ionicPopup.alert({
           title: title,
@@ -43,17 +43,17 @@
         });
         return confirmPopup;
       };
-  
+
       functionObj.setLocalStorage = function (nome, value) {
         console.log('Utils::setLocalStorage: Salvando ' + nome + ' em Local Storage (offline)');
         window.localStorage.setItem(nome, JSON.stringify(value));
       };
-  
+
       functionObj.removeLocalStorage = function (nome) {
         console.log('Utils::removeLocalStorage: Apagando ' + nome + ' em Local Storage (offline)');
         window.localStorage.removeItem(nome);
       };
-  
+
       functionObj.getLocalStorage = function (nome) {
         console.log('Utils::getLocalStorage: Carregando ' + nome + ' de Local Storage (offline)');
         var d = $q.defer();
@@ -66,19 +66,18 @@
         }
         return d.promise;
       };
-  
+
       return functionObj;
     }
   })();
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
