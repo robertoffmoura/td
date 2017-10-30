@@ -24,6 +24,7 @@
         $ionicLoading.hide();
       };
 
+
       functionObj.showAlert = function(title, message) {
         $ionicPopup.alert({
           title: title,

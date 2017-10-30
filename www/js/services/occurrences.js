@@ -31,6 +31,8 @@
     };
 
     self.pushOccurrence = function (ocr) {
+      var d = $q.defer();
+
       Utils.showLoading();
       console.log(ocr);
       var timestamp = firebase.database.ServerValue.TIMESTAMP;
@@ -51,8 +53,11 @@
       }).then(function(){
         Utils.hideLoading();
         Utils.showAlert('Muito Obrigado', 'Ocorrência registrada com sucesso.');
+        d.resolve();
         // Da sobreposição no back button quando registra ocorrência clicando pelo + do mapa
       });
+
+      return d.promise;
     };
 
 

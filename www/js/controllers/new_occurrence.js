@@ -46,14 +46,17 @@
               if(res) {
                 console.log('Enviando', form);
                 // Enviar ocorrência para o banco;
-                Occurrences.pushOccurrence(form);
+                Occurrences.pushOccurrence(form).then(function() {
+                  $state.go('tabs.occurrences');
+                });
               } else {
                 console.log('Cancelado');
               }
             });
         } else {
-          Occurrences.pushOccurrence(form);
-          $state.go('tabs.occurrences');
+          Occurrences.pushOccurrence(form).then(function() {
+            $state.go('tabs.occurrences');
+          });
         }
       }
     };

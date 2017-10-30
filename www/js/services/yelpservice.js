@@ -35,7 +35,6 @@ app.service("YelpService", function ($q, $http, $cordovaGeolocation, $ionicPopup
 							lat: self.lat,
 							lon: self.lon
 						};
-
 						//Pegar ocorrências perto de onde se está
 						var ocrs = $firebaseArray(FirebaseData.refOccurrences);
 						ocrs.$loaded().then(function(list) {
