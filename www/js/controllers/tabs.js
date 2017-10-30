@@ -36,5 +36,9 @@
       $state.go('home');
     };
 
+    $scope.goOccurrences = function () {
+      $state.go("tabs.occurrences");
+    }
+
   }
 })();

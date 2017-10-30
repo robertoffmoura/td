@@ -18,6 +18,7 @@
       FirebaseData.refOccurrences.on('value', function(snap) {
         d.resolve(snap.val());
         self.list = snap.val();
+        Utils.hideLoading();
       });
       // .then(function (snap) {
       //   d.resolve(snap.val());
