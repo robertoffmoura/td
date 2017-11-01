@@ -17,7 +17,14 @@
       var d = $q.defer();
       FirebaseData.refOccurrences.on('value', function(snap) {
         d.resolve(snap.val());
-        self.list = snap.val();
+        var snapVal = snap.val();
+        self.list = [];//criando um array pois não dá para ordenar objeto em javascript
+        for (var occurrence in snapVal) {
+            self.list.push(snapVal[occurrence]);
+        }
+        self.list.sort(function(a, b) {//ordem decrescente cronológica
+            return b.timestamp - a.timestamp;
+        });//
         Utils.hideLoading();
       });
       // .then(function (snap) {
@@ -37,7 +44,7 @@
       console.log(ocr);
       var timestamp = firebase.database.ServerValue.TIMESTAMP;
       var newOccurrenceRef = FirebaseData.refOccurrences.push().key;
-      
+
       FirebaseData.refOccurrences.child(newOccurrenceRef).update({
         'title': ocr.type,
         'description': ocr.description,
@@ -49,7 +56,7 @@
         'image_url': ocr.location.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}),
         'datetimeOcr': Date.parse(ocr.datetimeValue)/1000,
         'timestamp': timestamp
-      
+
       }).then(function(){
         Utils.hideLoading();
         Utils.showAlert('Muito Obrigado', 'Ocorrência registrada com sucesso.');
