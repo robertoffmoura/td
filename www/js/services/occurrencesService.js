@@ -5,26 +5,22 @@
     .module('App')
     .factory('Occurrences', Occurrences);
 
-  Occurrences.$inject = ['$q', 'FirebaseData', 'Utils', '$state'];
+  Occurrences.$inject = ['$q', 'FirebaseData', 'Utils', '$state', "$firebaseArray"];
 
-  function Occurrences($q, FirebaseData, Utils, $state) {
+  function Occurrences($q, FirebaseData, Utils, $state, $firebaseArray) {
 
     var self = {
       list: []
     };
 
+
     self.loadOccurrences = function () {
       var d = $q.defer();
+      self.list = $firebaseArray(FirebaseData.refOccurrences);
+      //self.list.$add({ foo: "bar" }).then(...);
+      //self.list.$remove(2).then(...);
       FirebaseData.refOccurrences.on('value', function(snap) {
         d.resolve(snap.val());
-        var snapVal = snap.val();
-        self.list = [];//criando um array pois não dá para ordenar objeto em javascript
-        for (var occurrence in snapVal) {
-            self.list.push(snapVal[occurrence]);
-        }
-        self.list.sort(function(a, b) {//ordem decrescente cronológica
-            return b.timestamp - a.timestamp;
-        });//
         Utils.hideLoading();
       });
       // .then(function (snap) {
