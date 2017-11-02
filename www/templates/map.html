@@ -60,43 +60,45 @@
       <marker ng-repeat="ocr in yelp.results" icon="img/coffee-marker.png" clickable="true"
               on-mousedown="showOcrDetail(event, ocr)"
               position="{{[ocr.location.lat, ocr.location.lng]}}">
-    </marker>
-    <info-window id="marker-info">
-      <div ng-non-bindable="">
-        <div class="contents">
-          <img ng-src="{{yelp.ocr.image_url}}" alt="">
-          <h4>{{yelp.ocr.title}}</h4>
-          <!-- <h4>{{yelp.ocr.name}}</h4> -->
+      </marker>
+      <info-window id="marker-info">
+        <div ng-non-bindable="">
+          <div class="contents">
+            <img ng-src="{{yelp.ocr.image_url}}" alt="">
+            <h4>{{yelp.ocr.title}}</h4>
+            <!-- <h4>{{yelp.ocr.name}}</h4> -->
 
-          <p>{{yelp.ocr.description}}</p>
+            <p>{{yelp.ocr.description}}</p>
 
-          <div class="row">
+            <div class="row">
+              <div class="col">
+                <p class="address">
+                  <i class="ion ion-ios-location"></i>
+                  {{yelp.ocr.location.display_address}}
+                </p>
+              </div>
+            </div>
             <div class="col">
-              <p class="address">
-                <i class="ion ion-ios-location"></i>
-                {{yelp.ocr.location.display_address}} Olá
+              <p class="distance">
+                <i class="ion ion-person"></i>
+                Enviado por: User
               </p>
             </div>
-            <!-- <div class="col">
-              <p class="distance">
-                <i class="ion ion-ios-navigate"></i>
-                {{yelp.cafe.distance | number:"0"}}m
-              </p>
+              <!--
               <p class="rating">
                 <i class="ion ion-star"></i>
-                {{yelp.cafe.rating}}
+                123
                 &nbsp;
                 <i class="ion ion-person"></i>
-                {{yelp.cafe.review_count}}
+                123
               </p>
-            </div> -->
-          </div>
-          <div class="button button-small button-assertive" ng-click="getDirections(yelp.ocr)">
-            Get Directions
+              -->
+            <!--<div class="button button-small button-assertive" ng-click="getDirections(yelp.ocr)">-->
+            <!--Get Directions-->
+            <!--</div>-->
           </div>
         </div>
-      </div>
-    </info-window>
+      </info-window>
     </map>
 
     <button class="button icon ion-plus-round button-positive new-occurrence" ui-sref="tabs.new_occurrence"></button>

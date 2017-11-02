@@ -11,7 +11,6 @@
 
     console.log('NewOccurrenceController::');
 
-
     $scope.occurrencesTypes = [
       {
         nome: 'Assalto'
@@ -23,7 +22,6 @@
         nome: 'Tiroteio'
       }
     ];
-
 
     $scope.formData = {
       type: null,
@@ -73,7 +71,6 @@
       }
     };
 
-
     $scope.goBack = function () {
       $ionicViewSwitcher.nextDirection('back');
       $ionicHistory.nextViewOptions({
@@ -83,7 +80,6 @@
       });
       $state.go('tabs.occurrences');
     };
-
 
     $scope.onAddressSelection = function (location) {
       console.log(location);
@@ -96,7 +92,6 @@
         console.log('photo Url:', location.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
 
     };
-
 
   }
 })();

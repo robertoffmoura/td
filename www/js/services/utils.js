@@ -12,7 +12,7 @@
 
       functionObj.showLoading = function(){
         $ionicLoading.show({
-          content: '<i class="ion-loading-c"></i> ', // The text to display in the loading indicator
+          content: '<i class="ion-loading-c"></i>', // The text to display in the loading indicator
           animation: 'fade-in', // The animation to use
           showBackdrop: true, // Will a dark overlay or backdrop cover the entire view
           maxWidth: 200, // The maximum width of the loading indicator. Text will be wrapped if longer than maxWidth
@@ -32,17 +32,16 @@
           cssClass: 'animated bounceInDown',
           buttons: [{
             text: 'OK',
-            type: 'button-orange'
+            type: 'button-positive'
           }]
         });
       };
 
       functionObj.showConfirm = function(title, message) {
-        var confirmPopup = $ionicPopup.confirm({
+        return $ionicPopup.confirm({
           title: title,
           template: message
         });
-        return confirmPopup;
       };
 
       functionObj.setLocalStorage = function (nome, value) {

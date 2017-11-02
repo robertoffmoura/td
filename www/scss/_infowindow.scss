@@ -8,7 +8,7 @@
 		}
 	}
 	&:first-child > div {
-		background-color: $stable !important;
+		//background-color: $stable !important;
 		box-shadow: none !important;
 		> div > div {
 			background-color: $stable !important;
@@ -19,6 +19,9 @@
 
 .gm-style-iw {
   max-width: 240px;
+  p {
+    margin: 0;
+  }
   .contents {
     img {
       float: left;

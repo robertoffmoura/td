@@ -10,11 +10,10 @@
 
     console.log('TabsController::');
 
-    // Altera o comportamento do backButton ao clicar com o botão físico do aparelho
     $ionicPlatform.registerBackButtonAction(function () {
+      // Altera o comportamento do backButton ao clicar com o botão físico do aparelho
       var currentState = $state.current.name;
       console.log('BackButton pressed on state:', currentState);
-
       if (currentState === 'tabs.map') {
         $ionicViewSwitcher.nextDirection('back');
         $ionicHistory.nextViewOptions({
@@ -45,7 +44,6 @@
       });
       $state.go('tabs.map');
     };
-
 
     $scope.goOccurrences = function () {
       $state.go("tabs.occurrences");
