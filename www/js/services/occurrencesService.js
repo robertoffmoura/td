@@ -5,17 +5,20 @@
     .module('App')
     .factory('Occurrences', Occurrences);
 
-  Occurrences.$inject = ['$q', 'FirebaseData', 'Utils', '$firebaseArray'];
+  Occurrences.$inject = ['$q', 'FirebaseData', 'Utils', '$state', "$firebaseArray"];
 
-  function Occurrences($q, FirebaseData, Utils, $firebaseArray) {
+  function Occurrences($q, FirebaseData, Utils, $state, $firebaseArray) {
 
     var self = {
       list: []
     };
 
+
     self.loadOccurrences = function () {
       var d = $q.defer();
       self.list = $firebaseArray(FirebaseData.refOccurrences);
+      //self.list.$add({ foo: "bar" }).then(...);
+      //self.list.$remove(2).then(...);
       self.list.$loaded(function (data) {
         d.resolve(data);
         Utils.hideLoading();
@@ -47,10 +50,10 @@
           'display_address': ocr.location.vicinity
         },
         'image_url': ocr.location.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}),
-        'datetimeOcr': Date.parse(ocr.datetimeValue) / 1000,
+        'datetimeOcr': Date.parse(ocr.datetimeValue)/1000,
         'timestamp': timestamp
 
-      }).then(function () {
+      }).then(function(){
         Utils.hideLoading();
         Utils.showAlert('Muito Obrigado', 'Ocorrência registrada com sucesso.');
         d.resolve();
@@ -59,6 +62,7 @@
 
       return d.promise;
     };
+
 
 
     return self;
