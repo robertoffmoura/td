@@ -32,35 +32,46 @@
       description: null
     };
 
-    $scope.createNewOccurrence = function(form) {
+    $scope.createNewOccurrence = function (form) {
       form.lat = form.location.geometry.location.lat();
       form.lng = form.location.geometry.location.lng();
       console.log(form.lat, form.lng);
-      if(!form.type) Utils.showAlert('Tipo','Por favor, escolha o tipo da ocorrência');
-      else if(!form.location) Utils.showAlert('Local','Por favor, escolha o local da ocorrência');
-      else if(!form.datetimeValue) Utils.showAlert('Data e Horário', 'Por favor, escolha a data e o horário da ocorrência');
+      if (!form.type) Utils.showAlert('Tipo', 'Por favor, escolha o tipo da ocorrência');
+      else if (!form.location) Utils.showAlert('Local', 'Por favor, escolha o local da ocorrência');
+      else if (!form.datetimeValue) Utils.showAlert('Data e Horário', 'Por favor, escolha a data e o horário da ocorrência');
       else {
-        if(!form.description) {
+        if (!form.description) {
           Utils.showConfirm('Sem Descrição', 'Deseja enviar esta ocorrência sem observações ou descrições?')
-            .then(function(res){
-              if(res) {
+            .then(function (res) {
+              if (res) {
                 console.log('Enviando', form);
                 // Enviar ocorrência para o banco;
-                Occurrences.pushOccurrence(form).then(function() {
+                Occurrences.pushOccurrence(form).then(function () {
                   $state.go('tabs.occurrences');
+                  $ionicViewSwitcher.nextDirection('back');
+                  $ionicHistory.nextViewOptions({
+                    disableBack: true,
+                    disableAnimate: true,
+                    historyRoot: true
+                  });
                 });
               } else {
                 console.log('Cancelado');
               }
             });
         } else {
-          Occurrences.pushOccurrence(form).then(function() {
+          Occurrences.pushOccurrence(form).then(function () {
+            $ionicViewSwitcher.nextDirection('back');
+            $ionicHistory.nextViewOptions({
+              disableBack: true,
+              disableAnimate: true,
+              historyRoot: true
+            });
             $state.go('tabs.occurrences');
           });
         }
       }
     };
-
 
 
     $scope.goBack = function () {

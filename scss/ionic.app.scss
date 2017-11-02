@@ -17,7 +17,6 @@ $dark:                            #222 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-@import url('https://fonts.googleapis.com/css?family=Raleway');
 $headings-font-family: 'Raleway', serif;
 $font-family-base: 'Raleway', serif;
 
@@ -27,6 +26,7 @@ $font-family-base: 'Raleway', serif;
 @import "www/scss/infowindow";
 @import "www/scss/mapconfig";
 @import "www/css/style";
+@import "www/css/raleway";
 
 // IMPORTANTE: incluir cada arquivo .scss das views aqui abaixo:
 @import "www/scss/home";
