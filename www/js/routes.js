@@ -5,6 +5,8 @@ angular
 
       $ionicConfigProvider.navBar.alignTitle('center');
 
+      $ionicConfigProvider.tabs.position('bottom');
+
       $ionicConfigProvider.scrolling.jsScrolling(ionic.Platform.isIOS());
 
       $stateProvider

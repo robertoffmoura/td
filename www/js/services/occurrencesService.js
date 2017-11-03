@@ -31,15 +31,19 @@
       var timestamp = firebase.database.ServerValue.TIMESTAMP;
       var newOccurrenceRef = FirebaseData.refOccurrences.push().key;
 
+      var img = '';
+      if (ocr.location.photos !== undefined)
+        img = ocr.location.photos[0].getUrl({'maxWidth': 120, 'maxHeight': 100});
       FirebaseData.refOccurrences.child(newOccurrenceRef).update({
         'title': ocr.type,
+        'user': ocr.user,
         'description': ocr.description,
         'location': {
           'lat': ocr.lat,
           'lng': ocr.lng,
           'display_address': ocr.location.vicinity
         },
-        'image_url': ocr.location.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}),
+        'image_url': img,
         'datetimeOcr': Date.parse(ocr.datetimeValue) / 1000,
         'timestamp': timestamp
 

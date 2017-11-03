@@ -9818,8 +9818,6 @@ a.button {
 .gm-style > div:first-child > div + div > div:last-child > div > div:last-child {
   margin-right: 5px;
   margin-top: 5px; }
-  .gm-style > div:first-child > div + div > div:last-child > div > div:last-child > img {
-    display: none; }
 
 .gm-style > div:first-child > div + div > div:last-child > div > div:first-child > div {
   box-shadow: none !important; }
@@ -9829,7 +9827,11 @@ a.button {
 .gm-style-iw {
   max-width: 240px; }
   .gm-style-iw p {
-    margin: 0; }
+    margin: 0;
+    width: 98%;
+    text-align: justify; }
+  .gm-style-iw div div {
+    min-width: 210px; }
   .gm-style-iw .contents img {
     float: left;
     margin-right: 10px; }
@@ -9909,3 +9911,60 @@ a.button {
   border-radius: 50%;
   width: 50px;
   height: 50px; }
+
+.containerCustom {
+  display: block;
+  position: relative;
+  padding-top: 10px;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* Hide the browser's default checkbox */
+.containerCustom input {
+  position: absolute;
+  opacity: 0; }
+
+/* Create a custom checkbox */
+.checkmarkCustom {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #bfbfbf; }
+
+/* On mouse-over, add a grey background color */
+.containerCustom:hover input ~ .checkmarkCustom {
+  background-color: #a0a0a0; }
+
+/* When the checkbox is checked, add a blue background */
+.containerCustom input:checked ~ .checkmarkCustom {
+  background-color: #2196F3; }
+
+/* Create the checkmarkCustom/indicator (hidden when not checked) */
+.checkmarkCustom:after {
+  content: "";
+  position: absolute;
+  display: none; }
+
+/* Show the checkmarkCustom when checked */
+.containerCustom input:checked ~ .checkmarkCustom:after {
+  display: block; }
+
+/* Style the checkmarkCustom/indicator */
+.containerCustom .checkmarkCustom:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg); }

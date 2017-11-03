@@ -18,7 +18,7 @@ angular.module('ion-google-autocomplete', [])
           '<ion-header-bar class="item-input-inset">',
           '<label class="item-input-wrapper">',
           '<i class="icon ion-search placeholder-icon"></i>',
-          '<input type="search" ng-model="search.query" placeholder="Buscar local">',
+          '<input type="search" ng-model="search.query" placeholder="Buscar local" autofocus>',
           '</label>',
           '<button class="ion-autocomplete-cancel button button-clear button-dark ng-binding" ng-click="close()">Cancelar</button>',
           '</ion-header-bar>',

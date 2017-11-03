@@ -5,7 +5,7 @@
     </button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <button class="button button-clear" ng-click="">
+    <button class="button button-clear" ng-click="showUserPopup()">
       <i class="icon ion-android-person"></i>
     </button>
   </ion-nav-buttons>
@@ -70,7 +70,7 @@
 
             <p>{{yelp.ocr.description}}</p>
 
-            <div class="row">
+            <div class="row" ng-if="yelp.ocr.location.display_address">
               <div class="col">
                 <p class="address">
                   <i class="ion ion-ios-location"></i>
@@ -78,21 +78,21 @@
                 </p>
               </div>
             </div>
-            <div class="col">
+            <div class="col" ng-if="yelp.ocr.user">
               <p class="distance">
                 <i class="ion ion-person"></i>
-                Enviado por: User
+                Enviado por: {{yelp.ocr.user}}
               </p>
             </div>
-              <!--
-              <p class="rating">
-                <i class="ion ion-star"></i>
-                123
-                &nbsp;
-                <i class="ion ion-person"></i>
-                123
-              </p>
-              -->
+            <!--
+            <p class="rating">
+              <i class="ion ion-star"></i>
+              123
+              &nbsp;
+              <i class="ion ion-person"></i>
+              123
+            </p>
+            -->
             <!--<div class="button button-small button-assertive" ng-click="getDirections(yelp.ocr)">-->
             <!--Get Directions-->
             <!--</div>-->

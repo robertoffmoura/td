@@ -5,11 +5,15 @@
     .module('App')
     .controller('NewOccurrenceController', NewOccurrenceController);
 
-  NewOccurrenceController.$inject = ['$scope', '$ionicPlatform', '$state', '$ionicHistory', '$ionicViewSwitcher', 'Utils', 'Occurrences'];
+  NewOccurrenceController.$inject = ['$scope', '$rootScope', '$state', '$ionicHistory', '$ionicViewSwitcher', 'Utils', 'Occurrences'];
 
-  function NewOccurrenceController($scope, $ionicPlatform, $state, $ionicHistory, $ionicViewSwitcher, Utils, Occurrences) {
+  function NewOccurrenceController($scope, $rootScope, $state, $ionicHistory, $ionicViewSwitcher, Utils, Occurrences) {
 
     console.log('NewOccurrenceController::');
+
+    Utils.getLocalStorage('dataUser').then(function (value) {
+      $rootScope.dataUser = value;
+    });
 
     $scope.occurrencesTypes = [
       {
@@ -31,6 +35,7 @@
     };
 
     $scope.createNewOccurrence = function (form) {
+      form.user = $rootScope.dataUser.name;
       form.lat = form.location.geometry.location.lat();
       form.lng = form.location.geometry.location.lng();
       console.log(form.lat, form.lng);
@@ -65,7 +70,7 @@
               disableAnimate: true,
               historyRoot: true
             });
-            $state.go('tabs.occurrences');
+            $state.go('tabs.map');
           });
         }
       }
