@@ -35,43 +35,50 @@
     };
 
     $scope.createNewOccurrence = function (form) {
-      form.user = $rootScope.dataUser.name;
-      form.lat = form.location.geometry.location.lat();
-      form.lng = form.location.geometry.location.lng();
-      console.log(form.lat, form.lng);
       if (!form.type) Utils.showAlert('Tipo', 'Por favor, escolha o tipo da ocorrência');
-      else if (!form.location) Utils.showAlert('Local', 'Por favor, escolha o local da ocorrência');
+      else if (!form.location.geometry) Utils.showAlert('Local', 'Por favor, escolha o local da ocorrência');
       else if (!form.datetimeValue) Utils.showAlert('Data e Horário', 'Por favor, escolha a data e o horário da ocorrência');
       else {
-        if (!form.description) {
-          Utils.showConfirm('Sem Descrição', 'Deseja enviar esta ocorrência sem observações ou descrições?')
-            .then(function (res) {
-              if (res) {
-                console.log('Enviando', form);
-                // Enviar ocorrência para o banco;
-                Occurrences.pushOccurrence(form).then(function () {
-                  $state.go('tabs.occurrences');
-                  $ionicViewSwitcher.nextDirection('back');
-                  $ionicHistory.nextViewOptions({
-                    disableBack: true,
-                    disableAnimate: true,
-                    historyRoot: true
-                  });
-                });
-              } else {
-                console.log('Cancelado');
-              }
-            });
+        form.user = $rootScope.dataUser.name;
+        form.lat = form.location.geometry.location.lat();
+        form.lng = form.location.geometry.location.lng();
+        console.log(form.lat, form.lng);
+        // Limitar o registro das ocorrências apenas na Urca
+        if (!(-22.962657 < form.lat && form.lat < -22.931238 && -43.185721 < form.lng && form.lng < -43.142599)) {
+          Utils.showAlert('Local indisponível', 'Este aplicativo está disponível apenas para os moradores da Urca. Por favor, escolha apenas locais deste bairro.');
         } else {
-          Occurrences.pushOccurrence(form).then(function () {
-            $ionicViewSwitcher.nextDirection('back');
-            $ionicHistory.nextViewOptions({
-              disableBack: true,
-              disableAnimate: true,
-              historyRoot: true
+          if (!form.description) {
+            Utils.showConfirm('Sem Descrição', 'Deseja enviar esta ocorrência sem observações ou descrições?')
+              .then(function (res) {
+                if (res) {
+                  console.log('Enviando', form);
+                  // Enviar ocorrência para o banco;
+                  Occurrences.pushOccurrence(form).then(function () {
+                    $state.go('tabs.occurrences');
+                    $ionicViewSwitcher.nextDirection('back');
+                    $ionicHistory.nextViewOptions({
+                      disableBack: true,
+                      disableAnimate: true,
+                      historyRoot: true
+                    });
+                  });
+                } else {
+                  console.log('Cancelado');
+                }
+              });
+          } else {
+            Occurrences.pushOccurrence(form).then(function () {
+              $rootScope.lat = form.lat;
+              $rootScope.lon = form.lng;
+              $ionicViewSwitcher.nextDirection('back');
+              $ionicHistory.nextViewOptions({
+                disableBack: true,
+                disableAnimate: true,
+                historyRoot: true
+              });
+              $state.go('tabs.map');
             });
-            $state.go('tabs.map');
-          });
+          }
         }
       }
     };
