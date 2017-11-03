@@ -12,6 +12,8 @@
     console.log('MapController::');
 
     $scope.yelp = YelpService;
+    $rootScope.lat = $scope.yelp.lat;
+    $rootScope.lon = $scope.yelp.lon;
 
     $rootScope.dataUser = {
       name: '',

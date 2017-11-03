@@ -54,7 +54,7 @@
       </info-window>
     </map> -->
 
-    <map center="{{yelp.lat}}, {{yelp.lon}}" zoom="15" disable-default-u-i="true">
+    <map center="{{lat}}, {{lon}}" zoom="15" disable-default-u-i="true">
       <marker position="{{[yelp.lat, yelp.lon]}}" icon="img/me-marker.png">
       </marker>
       <marker ng-repeat="ocr in yelp.results" icon="img/coffee-marker.png" clickable="true"

@@ -18,14 +18,16 @@
       on-refresh="occurrences.loadOccurrences()">
     </ion-refresher>
     <ion-list>
-        <ion-item class="item item-c ion-left" ng-repeat="occurrence in occurrences.list | orderBy:'-datetimeOcr'">
-      <!-- <ion-item class="item item-c ion-left" ng-repeat="occurrence in occurrences"> -->
+      <ion-item class="item item-c ion-left"
+                ng-repeat="occurrence in occurrences.list | orderBy:'-datetimeOcr'"
+                ng-click="showInMap(occurrence)">
+        <!-- <ion-item class="item item-c ion-left" ng-repeat="occurrence in occurrences"> -->
         <h2>{{occurrence.title}}</h2>
         {{occurrence.description}}
         <span class="item-note">
-                {{occurrence.datetimeOcr*1000| date:'dd/MM/yyyy - H:mm'}}
-                <!-- multiplicando por 1000 para transformar em milisegundos -->
-            </span>
+          {{occurrence.datetimeOcr*1000 | date:'dd/MM/yyyy - H:mm'}}
+          <!-- multiplicando por 1000 para transformar em milisegundos -->
+        </span>
       </ion-item>
     </ion-list>
   </ion-content>
