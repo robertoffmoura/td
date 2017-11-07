@@ -12,22 +12,26 @@
           name="faleConscoForm"
           class="form animated fadeInDown">
 
-    <h3 class="text-center padding">Preencha os dados abaixo</h3>
+    <!-- <h3 class="text-center padding">Preencha os dados abaixo</h3> -->
 
     <div class="item item-divider">
       Tipo
     </div>
     <div class="row">
-      <div class="col-33">
+      <div class="col-50">
         <ion-radio ng-model="formData.type" ng-value="'Assalto'">Assalto</ion-radio>
       </div>
 
-      <div class="col-33">
+      <div class="col-50">
         <ion-radio ng-model="formData.type" ng-value="'Furto'">Furto</ion-radio>
       </div>
-
-      <div class="col-33">
+    </div>
+    <div class="row">
+      <div class="col-50">
         <ion-radio ng-model="formData.type" ng-value="'Tiroteio'">Tiroteio</ion-radio>
+      </div>
+      <div class="col-50">
+        <ion-radio ng-model="formData.type" ng-value="'Assédio'">Assédio</ion-radio>
       </div>
     </div>
 
@@ -62,8 +66,8 @@
                 ng-model="formData.description"></textarea>
     </label>
 
-
-    <button class="button button-calm button-block"
+    <!-- Fiz uma classe margin_button no style.css mas não consigo fazer funcionar, por isso coloquei o style -->
+    <button class="button button-block button-balanced margin_button" style="width: calc(100% - 20px); margin-right: 10px; margin-left: 10px;"
             type="submit">
       Enviar
     </button >
