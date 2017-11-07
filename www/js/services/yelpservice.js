@@ -6,6 +6,7 @@ app.service("YelpService", function ($q, $http, $cordovaGeolocation, Utils, Occu
 		'isLoading': false,
 		'hasMore': true,
 		'results': [],
+		'ocr': {},
 		'lat': -22.954616,
 		'lon': -43.166817,
 		'refresh': function () {

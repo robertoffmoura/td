@@ -67,8 +67,7 @@
         d.reject();
       }
       return d.promise;
-    }
-    ;
+    };
 
     return functionObj;
   }

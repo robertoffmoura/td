@@ -41,7 +41,8 @@
         'location': {
           'lat': ocr.lat,
           'lng': ocr.lng,
-          'display_address': ocr.location.vicinity
+          'display_address': ocr.location.vicinity,
+          'name': ocr.location.name
         },
         'image_url': img,
         'datetimeOcr': Date.parse(ocr.datetimeValue) / 1000,
