@@ -31,6 +31,7 @@
 
     $scope.$on('mapInitialized', function (event, map) {
       $scope.map = map;
+      $scope.yelp.getPos();
     });
 
     $scope.$watch(function () {
