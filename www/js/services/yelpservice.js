@@ -34,7 +34,15 @@ app.service("YelpService", function ($q, $http, $cordovaGeolocation, Utils, Occu
         if (list.lengnt === 0) {
           self.hasMore = false;
         } else {
-          angular.forEach(list, function(ocr) {
+          angular.forEach(list, function(item) {
+			ocr = item;
+			switch (ocr.title) {
+				case "Tiroteio": ocr.icon = "marker-shooting.png"; break;
+				case "Assalto": ocr.icon = "marker-robbery.png"; break;
+				case "Furto": ocr.icon = "marker-theft.png"; break;
+				case "Assédio": ocr.icon = "marker-harassment.png"; break;
+				default: ocr.icon = "coffee-marker.png"
+			}
             self.results.push(ocr);
           });
         }
