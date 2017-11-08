@@ -13,3 +13,9 @@
   margin: 0 auto;
   display: inherit;
 }
+
+.margin_button {
+    width: calc(100% - 20px);
+    margin-right: 10px;
+    margin-left: 10px;
+}
