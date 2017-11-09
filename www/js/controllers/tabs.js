@@ -6,6 +6,7 @@
     .controller('TabsController', TabsController);
 
   TabsController.$inject = ['$scope', '$ionicPlatform', '$state', '$ionicHistory', '$ionicViewSwitcher'];
+
   function TabsController($scope, $ionicPlatform, $state, $ionicHistory, $ionicViewSwitcher) {
 
     console.log('TabsController::');

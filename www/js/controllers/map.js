@@ -42,8 +42,14 @@
       $scope.doRefresh();
     });
 
+    // $rootScope.$watch(function () {
+    //   return $rootScope.ocrSelected;
+    // }, function () {
+    //   $scope.showOcrDetail(null, $rootScope.ocrSelected);
+    // });
+
     $scope.showOcrDetail = function (event, ocr) {
-      console.log("Exibindo informações", ocr);
+      console.log("Exibindo informações", event);
       $scope.yelp.ocr = ocr;
       $scope.map.showInfoWindow.apply(this, [event, 'marker-info']);
     };
@@ -117,10 +123,6 @@
         ]
       });
     };
-
-    $timeout(function () {
-      console.log("Ocorrencias", $scope.yelp.results);
-    }, 3000);
 
   }
 })();

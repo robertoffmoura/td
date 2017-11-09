@@ -21,6 +21,7 @@
     $scope.showInMap = function (ocr) {
       $rootScope.lat = ocr.location.lat;
       $rootScope.lon = ocr.location.lng;
+      // $rootScope.ocrSelected = ocr;
       $ionicViewSwitcher.nextDirection('back');
       $ionicHistory.nextViewOptions({
         disableBack: true,
