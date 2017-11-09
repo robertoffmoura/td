@@ -11,9 +11,9 @@
   </ion-nav-buttons>
   <ion-content scroll="false">
     <map center="{{lat}}, {{lon}}" zoom="15" disable-default-u-i="true">
-      <marker position="{{[yelp.lat, yelp.lon]}}" icon="img/me-marker.png">
-      </marker>
-      <marker ng-repeat="ocr in yelp.results" icon="img/coffee-marker.png" clickable="true"
+      <!-- <marker position="{{[yelp.lat, yelp.lon]}}" icon="img/me-marker.png">
+      </marker> -->
+      <marker ng-repeat="ocr in yelp.results" icon="img/{{ocr.icon}}" clickable="true"
               on-mousedown="showOcrDetail(event, ocr)"
               position="{{[ocr.location.lat, ocr.location.lng]}}">
       </marker>

@@ -1,6 +1,6 @@
 var app = angular.module('App');
 
-app.service("YelpService", function ($q, $http, Utils, Occurrences, FirebaseData, $firebaseArray, $cordovaGeolocation) {
+app.service("YelpService", function ($q, $http, $cordovaGeolocation, Utils, Occurrences, FirebaseData, $firebaseArray) {
 	var self = {
 		'page': 1,
 		'isLoading': false,
@@ -20,52 +20,62 @@ app.service("YelpService", function ($q, $http, Utils, Occurrences, FirebaseData
 			self.page += 1;
 			return self.load();
 		},
+		'getPos': function () {
+      ionic.Platform.ready(function () {
+        $cordovaGeolocation
+          .getCurrentPosition({timeout: 10000, enableHighAccuracy: false})
+          .then(function (position) {
+            console.log("YelpService::getCurrentPosition");
+            self.lat = position.coords.latitude;
+            self.lon = position.coords.longitude;
+
+            var params = {
+              page: self.page,
+              lat: self.lat,
+              lon: self.lon
+            };
+
+          }, function (err) {
+            console.error("Error getting position");
+            console.error(err);
+            Utils.showAlert('Por favor habilite seu GPS', 'Parece que o serviço de localização do seu ' +
+              'aparelho está indisponível. Habilite essa opção nas configurações do aparelho.');
+          });
+      });
+    },
 		'load': function () {
-		  console.log('YelpService:load()');
+			console.log('YelpService:load()');
 			self.isLoading = true;
 			var deferred = $q.defer();
 
-      // Pegar ocorrências perto de onde está
-      // Alterar a restrição de acordo com uma quantidade pré determinada ou pela data
-      var ocrs = $firebaseArray(FirebaseData.refOccurrences.limitToLast(100));
-      ocrs.$loaded().then(function(list) {
-        // Alterar local do carregamento se for utilizar a localização como parâmetro para a pesquisa
-        console.log("YelpService::load()", list);
+			// Pegar ocorrências perto de onde está
+			// Alterar a restrição de acordo com uma quantidade pré determinada ou pela data
+			var ocrs = $firebaseArray(FirebaseData.refOccurrences.limitToLast(100));
+			ocrs.$loaded().then(function(list) {
+				// Alterar local do carregamento se for utilizar a localização como parâmetro para a pesquisa
+				console.log("YelpService::load()", list);
 
-        if (list.lengnt === 0) {
-          self.hasMore = false;
-        } else {
-          angular.forEach(list, function(ocr) {
-            self.results.push(ocr);
-          });
-        }
-        self.isLoading = false;
-        deferred.resolve();
-
-      }).catch(function(error) {
-        self.isLoading = false;
-        deferred.reject(error);
-      });
-
-      ionic.Platform.ready(function () {
-        $cordovaGeolocation
-					.getCurrentPosition({timeout: 10000, enableHighAccuracy: false})
-          .then(function PositionSuccess (position) {
-            console.log("YelpService::getCurrentPosition");
-						self.lat = position.coords.latitude;
-						self.lon = position.coords.longitude;
-            // alert('MyPosition'+self.lat+self.lon);
-						var params = {
-							page: self.page,
-							lat: self.lat,
-							lon: self.lon
-						};
-					}, function (err) {
-						console.error("Error getting position");
-						console.error(JSON.stringify(err));
-						Utils.showAlert('Por favor habilite seu GPS', 'Parece que o serviço de localização do seu ' +
-              'aparelho está indisponível. Habilite essa opção nas configurações do aparelho.');
+				if (list.lengnt === 0) {
+					self.hasMore = false;
+				} else {
+					angular.forEach(list, function(item) {
+						ocr = item;
+						switch (ocr.title) {
+							case "Tiroteio": ocr.icon = "marker-shooting.png"; break;
+							case "Assalto": ocr.icon = "marker-robbery.png"; break;
+							case "Furto": ocr.icon = "marker-theft.png"; break;
+							case "Assédio": ocr.icon = "marker-harassment.png"; break;
+							default: ocr.icon = "coffee-marker.png"
+						}
+						self.results.push(ocr);
 					});
+				}
+				self.isLoading = false;
+				deferred.resolve();
+
+			}).catch(function(error) {
+				self.isLoading = false;
+				deferred.reject(error);
 			});
 
 			return deferred.promise;
