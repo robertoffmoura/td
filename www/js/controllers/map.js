@@ -12,8 +12,6 @@
     console.log('MapController::');
 
     $scope.yelp = YelpService;
-    $rootScope.lat = $scope.yelp.lat;
-    $rootScope.lon = $scope.yelp.lon;
 
     $rootScope.dataUser = {
       name: '',
@@ -32,6 +30,8 @@
     $scope.$on('mapInitialized', function (event, map) {
       $scope.map = map;
       $scope.yelp.getPos();
+      $rootScope.lat = $scope.yelp.lat;
+      $rootScope.lon = $scope.yelp.lon;
     });
 
     $scope.$watch(function () {
@@ -42,14 +42,18 @@
       $scope.doRefresh();
     });
 
-    // $rootScope.$watch(function () {
-    //   return $rootScope.ocrSelected;
-    // }, function () {
-    //   $scope.showOcrDetail(null, $rootScope.ocrSelected);
-    // });
+    $rootScope.$watch(function () {
+      return $rootScope.ocrSelected;
+    }, function () {
+      $scope.yelp.ocr = $rootScope.ocrSelected;
+      console.log('ID', $scope.yelp.ocr.id);
+      $timeout(function () {
+        $scope.map.showInfoWindow('marker-info', $scope.yelp.ocr.id);
+      }, 1000);
+    });
 
     $scope.showOcrDetail = function (event, ocr) {
-      console.log("Exibindo informações", event);
+      console.log("Exibindo informações", ocr);
       $scope.yelp.ocr = ocr;
       $scope.map.showInfoWindow.apply(this, [event, 'marker-info']);
     };

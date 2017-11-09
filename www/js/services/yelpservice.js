@@ -53,7 +53,7 @@ app.service("YelpService", function ($q, $http, $cordovaGeolocation, Utils, Occu
       var ocrs = $firebaseArray(FirebaseData.refOccurrences.limitToLast(100));
       ocrs.$loaded().then(function (list) {
         // Alterar local do carregamento se for utilizar a localização como parâmetro para a pesquisa
-        console.log("YelpService::load()", list);
+        console.log(list);
 
         if (list.lengnt === 0) {
           self.hasMore = false;

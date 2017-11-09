@@ -51,37 +51,33 @@
             Utils.showConfirm('Sem Descrição', 'Deseja enviar esta ocorrência sem observações ou descrições?')
               .then(function (res) {
                 if (res) {
-                  console.log('Enviando', form);
-                  // Enviar ocorrência para o banco;
-                  Occurrences.pushOccurrence(form).then(function () {
-                    $state.go('tabs.occurrences');
-                    $ionicViewSwitcher.nextDirection('back');
-                    $ionicHistory.nextViewOptions({
-                      disableBack: true,
-                      disableAnimate: true,
-                      historyRoot: true
-                    });
-                  });
+                  sendOccurrence(form);
                 } else {
                   console.log('Cancelado');
                 }
               });
           } else {
-            Occurrences.pushOccurrence(form).then(function () {
-              $rootScope.lat = form.lat;
-              $rootScope.lon = form.lng;
-              $ionicViewSwitcher.nextDirection('back');
-              $ionicHistory.nextViewOptions({
-                disableBack: true,
-                disableAnimate: true,
-                historyRoot: true
-              });
-              $state.go('tabs.map');
-            });
+            sendOccurrence(form);
           }
         }
       }
     };
+
+    function sendOccurrence (form) {
+      // Enviar ocorrência para o banco
+      console.log('Enviando', form);
+      Occurrences.pushOccurrence(form).then(function () {
+        $rootScope.lat = form.lat;
+        $rootScope.lon = form.lng;
+        $ionicViewSwitcher.nextDirection('back');
+        $ionicHistory.nextViewOptions({
+          disableBack: true,
+          disableAnimate: true,
+          historyRoot: true
+        });
+        $state.go('tabs.map');
+      });
+    }
 
     $scope.goBack = function () {
       $ionicViewSwitcher.nextDirection('back');
