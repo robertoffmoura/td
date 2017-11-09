@@ -1,6 +1,6 @@
 var app = angular.module('App');
 
-app.service("YelpService", function ($q, $http, Utils, Occurrences, FirebaseData, $firebaseArray) {
+app.service("YelpService", function ($q, $http, Utils, Occurrences, FirebaseData, $firebaseArray, $cordovaGeolocation) {
 	var self = {
 		'page': 1,
 		'isLoading': false,
@@ -48,12 +48,13 @@ app.service("YelpService", function ($q, $http, Utils, Occurrences, FirebaseData
       });
 
       ionic.Platform.ready(function () {
-        navigator.geolocation
-					.getCurrentPosition(function PositionSuccess (position) {
+        $cordovaGeolocation
+					.getCurrentPosition({timeout: 10000, enableHighAccuracy: false})
+          .then(function PositionSuccess (position) {
             console.log("YelpService::getCurrentPosition");
 						self.lat = position.coords.latitude;
 						self.lon = position.coords.longitude;
-            alert('MyPosition'+self.lat+self.lon);
+            // alert('MyPosition'+self.lat+self.lon);
 						var params = {
 							page: self.page,
 							lat: self.lat,

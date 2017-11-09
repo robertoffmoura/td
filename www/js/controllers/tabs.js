@@ -22,6 +22,10 @@
           historyRoot: true
         });
         $state.go('home');
+      } else if (currentState === 'home') {
+        ionic.Platform.exitApp();
+      } else {
+        $ionicHistory.goBack();
       }
     }, 100);
 
