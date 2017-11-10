@@ -11,6 +11,8 @@
 
     console.log('NewOccurrenceController::');
 
+    $rootScope.hideTabs = 'tabs-item-hide';
+
     Utils.getLocalStorage('dataUser').then(function (value) {
       $rootScope.dataUser = value;
     });

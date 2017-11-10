@@ -5,9 +5,9 @@
     .module('App')
     .controller('TabsController', TabsController);
 
-  TabsController.$inject = ['$scope', '$ionicPlatform', '$state', '$ionicHistory', '$ionicViewSwitcher'];
+  TabsController.$inject = ['$scope', '$ionicPlatform', '$state', '$ionicHistory', '$ionicViewSwitcher', '$rootScope'];
 
-  function TabsController($scope, $ionicPlatform, $state, $ionicHistory, $ionicViewSwitcher) {
+  function TabsController($scope, $ionicPlatform, $state, $ionicHistory, $ionicViewSwitcher, $rootScope) {
 
     console.log('TabsController::');
 
@@ -26,6 +26,7 @@
       } else if (currentState === 'home') {
         ionic.Platform.exitApp();
       } else {
+        $rootScope.hideTabs = '';
         $ionicHistory.goBack();
       }
     }, 100);
