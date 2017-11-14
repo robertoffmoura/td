@@ -5,9 +5,9 @@
     .module('App')
     .factory('Utils', Utils);
 
-  Utils.$inject = ['$ionicLoading', '$ionicPopup', '$q'];
+  Utils.$inject = ['$ionicLoading', '$ionicPopup', '$q', '$timeout'];
 
-  function Utils($ionicLoading, $ionicPopup, $q) {
+  function Utils($ionicLoading, $ionicPopup, $q, $timeout) {
 
     var functionObj = {};
 
@@ -19,6 +19,9 @@
         maxWidth: 200, // The maximum width of the loading indicator. Text will be wrapped if longer than maxWidth
         showDelay: 50 // The delay in showing the indicator
       });
+      $timeout(function () {
+        $ionicLoading.hide();
+      }, 5000);
     };
 
     functionObj.hideLoading = function () {

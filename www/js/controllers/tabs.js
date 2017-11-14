@@ -23,6 +23,14 @@
           historyRoot: true
         });
         $state.go('home');
+      } else if (currentState === 'tabs.occurrences') {
+        $ionicViewSwitcher.nextDirection('back');
+        $ionicHistory.nextViewOptions({
+          disableBack: true,
+          disableAnimate: true,
+          historyRoot: true
+        });
+        $state.go('tabs.map');
       } else if (currentState === 'home') {
         ionic.Platform.exitApp();
       } else {

@@ -77,6 +77,7 @@
           disableAnimate: true,
           historyRoot: true
         });
+        $rootScope.hideTabs = '';
         $state.go('tabs.map');
       });
     }

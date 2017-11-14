@@ -1,6 +1,6 @@
 var app = angular.module('App');
 
-app.service("YelpService", function ($q, $http, $cordovaGeolocation, Utils, Occurrences, FirebaseData, $firebaseArray) {
+app.service("YelpService", function ($q, $http, $cordovaGeolocation, Utils, Occurrences, FirebaseData, $firebaseArray, $rootScope) {
   var self = {
     'page': 1,
     'isLoading': false,
@@ -22,25 +22,28 @@ app.service("YelpService", function ($q, $http, $cordovaGeolocation, Utils, Occu
     },
     'getPos': function () {
       ionic.Platform.ready(function () {
+        var d = $q.defer();
         $cordovaGeolocation
           .getCurrentPosition({timeout: 10000, enableHighAccuracy: false})
           .then(function (position) {
             console.log("YelpService::getCurrentPosition");
             self.lat = position.coords.latitude;
             self.lon = position.coords.longitude;
-
             var params = {
-              page: self.page,
               lat: self.lat,
               lon: self.lon
             };
-
+            $rootScope.lat = self.lat;
+            $rootScope.lon = self.lon;
+            d.resolve(params);
           }, function (err) {
-            console.error("Error getting position");
-            console.error(err);
+            console.log("Error getting position");
+            console.log(err);
+            d.reject(err);
             Utils.showAlert('Por favor habilite seu GPS', 'Parece que o serviço de localização do seu ' +
               'aparelho está indisponível. Habilite essa opção nas configurações do aparelho.');
           });
+        return d.promise;
       });
     },
     'load': function () {
