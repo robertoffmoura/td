@@ -15,12 +15,13 @@
     Utils.showLoading();
 
     $scope.occurrences.loadOccurrences().then(function () {
-      console.log('Occurrences loaded');
+      console.log('Occurrences loaded', $scope.occurrences.list);
     });
 
     $scope.showInMap = function (ocr) {
-      $rootScope.lat = ocr.location.lat;
-      $rootScope.lon = ocr.location.lng;
+      // $rootScope.lat = ocr.location.lat;
+      // $rootScope.lon = ocr.location.lng;
+      $rootScope.ocrSelected = ocr;
       $ionicViewSwitcher.nextDirection('back');
       $ionicHistory.nextViewOptions({
         disableBack: true,

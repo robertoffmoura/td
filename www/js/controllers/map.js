@@ -12,8 +12,6 @@
     console.log('MapController::');
 
     $scope.yelp = YelpService;
-    $rootScope.lat = $scope.yelp.lat;
-    $rootScope.lon = $scope.yelp.lon;
 
     $rootScope.dataUser = {
       name: '',
@@ -32,6 +30,8 @@
     $scope.$on('mapInitialized', function (event, map) {
       $scope.map = map;
       $scope.yelp.getPos();
+      $rootScope.lat = $scope.yelp.lat;
+      $rootScope.lon = $scope.yelp.lon;
     });
 
     $scope.$watch(function () {
@@ -40,6 +40,16 @@
       // Recarregar o mapa: resolve o mapa cinza
       google.maps.event.trigger($scope.map, 'resize');
       $scope.doRefresh();
+    });
+
+    $rootScope.$watch(function () {
+      return $rootScope.ocrSelected;
+    }, function () {
+      $scope.yelp.ocr = $rootScope.ocrSelected;
+      console.log('ID', $scope.yelp.ocr.id);
+      $timeout(function () {
+        $scope.map.showInfoWindow('marker-info', $scope.yelp.ocr.id);
+      }, 1000);
     });
 
     $scope.showOcrDetail = function (event, ocr) {
@@ -117,10 +127,6 @@
         ]
       });
     };
-
-    $timeout(function () {
-      console.log("Ocorrencias", $scope.yelp.results);
-    }, 3000);
 
   }
 })();

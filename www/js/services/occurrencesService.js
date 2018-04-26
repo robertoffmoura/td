@@ -29,29 +29,37 @@
       Utils.showLoading();
       console.log(ocr);
       var timestamp = firebase.database.ServerValue.TIMESTAMP;
-      var newOccurrenceRef = FirebaseData.refOccurrences.push().key;
+      var newOccurrenceRef = FirebaseData.refOccurrences.push();
 
       var img = '';
       if (ocr.location.photos !== undefined)
         img = ocr.location.photos[0].getUrl({'maxWidth': 120, 'maxHeight': 100});
-      FirebaseData.refOccurrences.child(newOccurrenceRef).update({
+      newOccurrenceRef.update({
         'title': ocr.type,
         'user': ocr.user,
         'description': ocr.description,
         'location': {
           'lat': ocr.lat,
           'lng': ocr.lng,
-          'display_address': ocr.location.vicinity
+          'display_address': ocr.location.vicinity,
+          'name': ocr.location.name
         },
         'image_url': img,
         'datetimeOcr': Date.parse(ocr.datetimeValue) / 1000,
         'timestamp': timestamp
 
-      }).then(function () {
-        Utils.hideLoading();
-        Utils.showAlert('Muito Obrigado', 'Ocorrência registrada com sucesso.');
-        d.resolve();
-      });
+      })
+        .then(function () {
+          Utils.hideLoading();
+          Utils.showAlert('Muito Obrigado', 'Ocorrência registrada com sucesso.');
+          d.resolve();
+        })
+        .catch(function (err) {
+          console.log(err);
+          Utils.hideLoading();
+          Utils.showAlert('Erro', 'Não foi possível enviar sua ocorrência. Tente novamente mais tarde.');
+          d.reject();
+        });
 
       return d.promise;
     };

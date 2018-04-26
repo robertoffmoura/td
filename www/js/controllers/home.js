@@ -1,26 +1,18 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular
+  angular
     .module('App')
     .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope'];
-    function HomeController($scope) {
+  HomeController.$inject = ['$ionicPlatform'];
 
-        console.log('HomeController::');
+  function HomeController($ionicPlatform) {
 
-    }
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyAwdikiu8Hjedz3vACo0QZ6_-Ou4q3QV5g",
-        authDomain: "urcasafety.firebaseapp.com",
-        databaseURL: "https://urcasafety.firebaseio.com",
-        projectId: "urcasafety",
-        storageBucket: "urcasafety.appspot.com",
-        messagingSenderId: "372304408805"
-    };
-    firebase.initializeApp(config);
+    console.log('HomeController::');
+
+
+  }
 
 
 })();

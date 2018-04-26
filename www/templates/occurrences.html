@@ -20,7 +20,8 @@
     <ion-list>
       <ion-item class="item item-c ion-left"
                 ng-repeat="occurrence in occurrences.list | orderBy:'-datetimeOcr'"
-                ng-click="showInMap(occurrence)">
+                ng-click="showInMap(occurrence)"
+                ng-init="occurrence.id = ('occurence' + occurrence.$id)" id="{{occurrence.id}}">
         <!-- <ion-item class="item item-c ion-left" ng-repeat="occurrence in occurrences"> -->
         <h2>{{occurrence.title}}</h2>
         {{occurrence.description}}

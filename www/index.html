@@ -24,6 +24,18 @@
   <!-- firebase and angularfire-->
   <script src="lib/firebase/firebase.js"></script>
   <script src="lib/angularfire/dist/angularfire.min.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAwdikiu8Hjedz3vACo0QZ6_-Ou4q3QV5g",
+      authDomain: "urcasafety.firebaseapp.com",
+      databaseURL: "https://urcasafety.firebaseio.com",
+      projectId: "urcasafety",
+      storageBucket: "urcasafety.appspot.com",
+      messagingSenderId: "372304408805"
+    };
+    firebase.initializeApp(config);
+  </script>
 
   <!-- your app's js -->
   <script src="js/app.js"></script>
@@ -35,6 +47,7 @@
   <script src="js/controllers/new_occurrence.js"></script>
   <script src="js/controllers/about.js"></script>
   <script src="js/directives/ion-google-autocomplete.js"></script>
+  <script src="js/directives/hide-tabs.js"></script>
   <script src="js/services/firebase.js"></script>
   <script src="js/services/occurrencesService.js"></script>
   <script src="js/services/utils.js"></script>
