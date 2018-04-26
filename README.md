@@ -1,5 +1,5 @@
-# td
-Repositório do trabalho de Tema Dirigido IME 2017
+# UrcaSafety
+Project repository of "UrcaSafety" app
 
 ## Installation
 #### 1. Clone this project or Download that ZIP file
